@@ -73,7 +73,8 @@ endfunction(check_deps)
 ### COMPILER OPTIMIZATION FLAGS
 option(USE_COMPILER_OPTIMIZATIONS "Use the default CDP compiler optimization flags" ON)
 if(USE_COMPILER_OPTIMIZATIONS)
-  include(cmake/CompilerOptimizations.cmake)
+# this file doesn't exist anywhere
+#  include(cmake/CompilerOptimizations.cmake)
 endif()
 
 if(APPLE)
@@ -251,6 +252,7 @@ endif()
 
 #add_compiler_flags(${LIBCDP_CFLAGS} TARGETS ${CDPLIB})
 
+add_subdirectory(libaaio)
 add_subdirectory(dev)
 
 # # uninstall target

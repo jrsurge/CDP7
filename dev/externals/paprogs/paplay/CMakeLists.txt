@@ -6,8 +6,8 @@ if(APPLE)
   find_library(AULIB AudioUnit)
   find_library(CARBONLIB Carbon)
   #RWD only need this for APPLE?
-  find_library(AAIOLIB names libaaio.a paths /usr/local/lib)
-  set(EXTRA_LIBRARIES1 portsf pthread ${AAIOLIB} ${COREAUDIOLIB} ${AUDIOTOOLBOX} ${AULIB} ${CARBONLIB} ${EXTRA_LIBRARIES})
+  #find_library(AAIOLIB names libaaio.a paths /usr/local/lib)
+  set(EXTRA_LIBRARIES1 portsf pthread libaaio ${COREAUDIOLIB} ${AUDIOTOOLBOX} ${AULIB} ${CARBONLIB} ${EXTRA_LIBRARIES})
   
 else()
   if(MINGW)
@@ -16,7 +16,7 @@ else()
     set(EXTRA_LIBRARIES1 winmm dsound winspool portsf ${EXTRA_LIBRARIES})
   else()
     set(CMAKE_C_FLAGS "-O3 -Wall -Dlinux -Dunix -fomit-frame-pointer -funroll-loops")
-    set(EXTRA_LIBRARIES1 jack asound portsf pthread aaio ${EXTRA_LIBRARIES})
+    set(EXTRA_LIBRARIES1 jack asound portsf pthread libaaio ${EXTRA_LIBRARIES})
   endif()
 endif()
 
@@ -24,7 +24,7 @@ endif()
 
 link_directories (../../lib ../portaudio/lib/.libs  /usr/local/lib)
 
-include_directories(../../include ../include ../portaudio/include ../portaudio/src/common /usr/local/include)
+include_directories(../../include ../include ../portaudio/include ../portaudio/src/common /usr/local/include ../../../../libaaio)
 
 
 if(MINGW)
