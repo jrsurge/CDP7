@@ -1,3 +1,6 @@
+# Out of source build dirs
+build/*
+
 # Intermediate object files
 *.o
 *.os
